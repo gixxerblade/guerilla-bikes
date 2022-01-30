@@ -1,6 +1,6 @@
 TODO:
 
-- [] Mobile menu
-- [] Pages
-- [] Art
-- [] UI
+- [ ] Mobile menu
+- [ ] Pages
+- [ ] Art
+- [ ] UI
