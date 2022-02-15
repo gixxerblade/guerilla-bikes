@@ -1,54 +1,35 @@
 import { useState } from "react";
 import { NavLink } from "remix";
-import { AnimateSharedLayout, motion } from "framer-motion";
-
-type MenuItems = {
-  children: React.ReactNode,
-  selected: boolean,
-  onClick: () => void,
-}
-
-const MenuItem = ({ children, selected, onClick }: MenuItems) => (
-  <motion.div
-    onClick={onClick}
-    animate={{ opacity: selected ? 1 : 0.5 }}
-  >
-    {children}
-    {selected && (
-      <motion.div
-        style={{ textDecoration: 'underline'}}
-        className="underline"
-        layoutId="underline"
-      />
-    )}
-  </motion.div>
-)
+import { AnimateSharedLayout } from "framer-motion";
+import { MenuItem, MenuButton } from './components'
+import { links } from './constants/links'
 
 export const Nav = () => {
   const [selected, setSelected] = useState(0);
-  const links = [
-    {
-      url: '/',
-      name: 'Home'
-    },
-    {
-      url: '/about',
-      name: 'About',
-    },
-    {
-      url: '/contact',
-      name: 'Contact'
-    }
-  ]
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <header>
+    <header className="sticky z-1 w-screen top-0 bg-navy">
       <nav className="bg-navy h-16">
-        <ul className="flex flex-row text-white justify-around list-none h-16 items-center">
+        <div className="md:hidden">
+          <MenuButton
+            isOpen={isOpen}
+            onClick={() => setIsOpen(!isOpen)}
+            strokeWidth="4"
+            color="white"
+            lineProps={{ strokeLinecap: "round" }}
+            transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            width="20"
+            height="20"
+            style={{ marginLeft: '2rem' }}
+          />
+        </div>
+        <ul className="flex md:flex-row flex-col text-white justify-around list-none h-16 items-center">
           <AnimateSharedLayout>
             {links.map(({ url, name }, index) => (
               <MenuItem
                 selected={selected === index}
                 onClick={() => setSelected(index)}
+                key={name}
               >
                 <NavLink
                   className={

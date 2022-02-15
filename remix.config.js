@@ -8,11 +8,4 @@ module.exports = {
   serverBuildDirectory: "build",
   devServerPort: 8002,
   ignoredRouteFiles: [".*"],
-  routes: (defineRoutes) => {
-    return defineRoutes(route => {
-      route('/', './pages/Home.tsx')
-      route('/about', './pages/About.tsx')
-      route('/contact', './pages/Contact.tsx')
-    })
-  }
 };

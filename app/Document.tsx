@@ -34,7 +34,7 @@ export const Document = (props: Doc) => {
         <Meta />
         <Links />
       </head>
-      <body className="max-h-full">
+      <body className="bg-navy">
         {children}
         <ScrollRestoration />
         <Scripts />

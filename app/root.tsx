@@ -1,11 +1,21 @@
 import styles from "./tailwind.css";
-import { LiveReload, Meta, MetaFunction, Outlet } from "remix";
+import { LinksFunction, LiveReload, Meta, MetaFunction, Outlet } from "remix";
 import { Nav } from './Nav'
 import { Layout } from "./Layout";
 import { Document } from "./Document";
 
-export function links() {
-  return [{ rel: "stylesheet", href: styles }];
+export const links: LinksFunction = () => {
+  return [
+    {
+      rel: "stylesheet",
+      href: styles 
+    },
+    {
+      rel: "icon",
+      href: "/favicon.png",
+      type: "image/png",
+    }
+  ];
 }
 
 export default function App() {
